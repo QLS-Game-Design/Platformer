@@ -6,8 +6,9 @@ public class Player : MonoBehaviour
 {
     Rigidbody2D rb;
     public float speed = 10f;
-    public float jumpForce = 0.5f;
+    public float jumpForce = 2f;
     private bool onGround = true;
+    private bool jumpingCondition;
     public LayerMask groundLayerMask;
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -22,31 +23,34 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius, groundLayerMask);
-		for (int i = 0; i < colliders.Length; i++)
-		{
-			if (colliders[i].gameObject != gameObject)
-			{
-				onGround = true;
-			}
-		}
-
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
         rb.velocity = new Vector2(horizontalMove, rb.velocity.y);
-
-        // if(Input.GetKey(KeyCode.D))
-        // {
-        //     //transform.Translate(Vector2.right * speed * Time.deltaTime);
-            
-        // }
-        // if(Input.GetKey(KeyCode.A)){
-        //     //transform.Translate(Vector2.left * speed * Time.deltaTime);
-        //     rb.velocity = new Vector2(-speed, rb.velocity.y);
-        // }
-        if(Input.GetKey(KeyCode.W) && onGround){
-            Debug.Log("Jump");
-            // rb.AddForce(new Vector3(0f, jumpSpeed, 0f), ForceMode2D.Impulse);
+        if(Input.GetKey(KeyCode.W)){
+            jumpingCondition = true;
+        }
+        if(Input.GetKey(KeyCode.S)){
+            rb.AddForce(new Vector3(0f, -0.5f, 0f), ForceMode2D.Impulse);
+        }
+    }
+    void FixedUpdate()
+    {
+        if (jumpingCondition && onGround){
             rb.AddForce(new Vector3(0f, jumpForce, 0f), ForceMode2D.Impulse);
+        }
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.tag == "Map")
+        {
+            onGround = true;
+            jumpingCondition = false;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.tag == "Map")
+        {
             onGround = false;
         }
     }
