@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class Player1 : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private Animator animator;
+    public GameObject CoinsUI;
 
     public float speed = 5f;
     public float jumpForce = 6f;
-    public GameObject CoinsUI;
     private float horizontalMove = 0f;
+    private bool flipped = false;
     private bool onGround = true;
     // for advanced jumping
     private float timeFromLastJump = 0f;
@@ -21,7 +23,8 @@ public class Player1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>(); 
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         CoinsUI.GetComponent<Text>().text = "Coins: " + coins.ToString();
     }
 
@@ -30,6 +33,19 @@ public class Player1 : MonoBehaviour
     {
         // horizontal movement
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
+
+        if (horizontalMove < 0 && !flipped)
+        {
+            flipped = true;
+        } else if (horizontalMove > 0 && flipped)
+        {
+            flipped = false;
+        }
+        transform.rotation = Quaternion.Euler(new Vector3(0f, flipped ? 180f : 0f, 0f));
+
+
+        animator.SetFloat("speed", Mathf.Abs(horizontalMove));
+
         rb.velocity = new Vector2(horizontalMove, rb.velocity.y);
 
         // // basic jumping
