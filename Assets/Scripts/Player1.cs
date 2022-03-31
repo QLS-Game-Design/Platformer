@@ -86,6 +86,7 @@ public class Player1 : MonoBehaviour
         if (collision.collider.gameObject.tag == "Map")
         {
             onGround = true;
+            animator.SetBool("JumpUp", false);
         }
     }
 
@@ -94,6 +95,7 @@ public class Player1 : MonoBehaviour
         if (collision.collider.gameObject.tag == "Map")
         {
             onGround = false;
+            animator.SetBool("JumpUp", true);
         }
     }
 
