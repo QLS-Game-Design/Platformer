@@ -105,7 +105,6 @@ public class Player1 : MonoBehaviour
         {
             coins++;
             Destroy(collision.GetComponent<Collider2D>().gameObject);
-            Debug.Log(coins);
             CoinsUI.GetComponent<Text>().text = "Coins: " + coins.ToString();
         }
     }
