@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 57597655}
   m_Layer: 0
   m_Name: Slime (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2625,7 +2625,7 @@ GameObject:
   - component: {fileID: 1017238813}
   m_Layer: 0
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2767,7 +2767,7 @@ MonoBehaviour:
   detector: {fileID: 1131131160}
   groundDetectionDistance: 0.3
   wallDetectionDistance: 0.05
-  speed: 1.5
+  speed: 15
   flipped: 0
 --- !u!1 &1020558945
 GameObject:
@@ -2785,7 +2785,7 @@ GameObject:
   - component: {fileID: 1020558946}
   m_Layer: 0
   m_Name: Slime (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3404,6 +3404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CoinsUI: {fileID: 1943124829}
   speed: 5
+  maxHealth: 10
   jumpForce: 6
   coins: 0
 --- !u!95 &1403820099

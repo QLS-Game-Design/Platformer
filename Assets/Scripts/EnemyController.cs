@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         mapLayer = LayerMask.GetMask("Map");
-        Physics2D.IgnoreCollision(GameObject.Find("Player").GetComponent<BoxCollider2D>(), GetComponent<CircleCollider2D>());
+    //     Physics2D.IgnoreCollision(GameObject.Find("Player").GetComponent<BoxCollider2D>(), GetComponent<CircleCollider2D>());
     }
 
     void FixedUpdate()

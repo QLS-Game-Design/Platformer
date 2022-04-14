@@ -10,6 +10,8 @@ public class Player1 : MonoBehaviour
     public GameObject CoinsUI;
 
     public float speed = 5f;
+    public float maxHealth = 10;
+    private float health;
     public float jumpForce = 6f;
     private float horizontalMove = 0f;
     private bool flipped = false;
@@ -26,6 +28,7 @@ public class Player1 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         CoinsUI.GetComponent<Text>().text = "Coins: " + coins.ToString();
+        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -87,6 +90,11 @@ public class Player1 : MonoBehaviour
         {
             onGround = true;
             animator.SetBool("JumpUp", false);
+        }   else if (collision.collider.gameObject.tag == "Enemy")
+        {
+            Debug.Log("wow");
+            animator.SetBool("IsHurt", true);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y+5);
         }
     }
 
@@ -96,6 +104,9 @@ public class Player1 : MonoBehaviour
         {
             onGround = false;
             animator.SetBool("JumpUp", true);
+        } else if (collision.collider.gameObject.tag == "Enemy")
+        {
+            animator.SetBool("IsHurt", false);
         }
     }
 
