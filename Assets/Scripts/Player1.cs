@@ -8,7 +8,7 @@ public class Player1 : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     public GameObject CoinsUI;
-
+    public GameObject HealthUI;
     public float speed = 5f;
     public float maxHealth = 10;
     private float health;
@@ -19,21 +19,24 @@ public class Player1 : MonoBehaviour
     // for advanced jumping
     private float timeFromLastJump = 0f;
     private bool jumpQueued = false;
-
     public float coins = 0;
-
+    private float deathDuration = 3;
     // Start is called before the first frame update
     void Start()
     {
+        health = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         CoinsUI.GetComponent<Text>().text = "Coins: " + coins.ToString();
-        health = maxHealth;
+        HealthUI.GetComponent<Text>().text = "Health: " + health.ToString(); 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0){
+            StartCoroutine(Die());
+        }
         // horizontal movement
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
 
@@ -93,6 +96,8 @@ public class Player1 : MonoBehaviour
         }   else if (collision.collider.gameObject.tag == "Enemy")
         {
             Debug.Log("wow");
+            health-=1;
+            HealthUI.GetComponent<Text>().text = "Health: " + health.ToString(); 
             animator.SetBool("IsHurt", true);
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y+5);
         }
@@ -119,4 +124,11 @@ public class Player1 : MonoBehaviour
             CoinsUI.GetComponent<Text>().text = "Coins: " + coins.ToString();
         }
     }
+    IEnumerator Die()
+	{
+        animator.SetBool("IsDead", true);
+        HealthUI.GetComponent<Text>().text = "You died."; 
+        yield return new WaitForSeconds(deathDuration);
+        Application.LoadLevel(Application.loadedLevel);
+	}
 }
