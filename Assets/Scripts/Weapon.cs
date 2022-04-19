@@ -34,6 +34,15 @@ public class Weapon : MonoBehaviour
         float my = camera.y-py;
         // Debug.Log("x:"+mx);
         // Debug.Log("y:"+my);
+        if (mx < 0){
+            GetComponent<SpriteRenderer>().flipX = true;
+            transform.position = new Vector2(GameObject.FindGameObjectWithTag("Player").transform.position.x-0.1f, transform.position.y);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>().flipX = true;
+        } else {
+            GetComponent<SpriteRenderer>().flipX = false;
+            transform.position = new Vector2(GameObject.FindGameObjectWithTag("Player").transform.position.x+0.1f, transform.position.y);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>().flipX = false;
+        }
         if (Input.GetButtonDown("Fire1")){
             if (mx < 0)
                 Shoot(-1);
