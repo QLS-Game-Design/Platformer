@@ -3623,6 +3623,7 @@ MonoBehaviour:
   speed: 5
   maxHealth: 10
   jumpForce: 6
+  onGround: 1
   coins: 0
 --- !u!95 &1403820099
 Animator:
