@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        this.GetComponent<Rigidbody2D>().AddForce(new Vector2(5f, 5f), ForceMode2D.Impulse);
+        this.GetComponent<Rigidbody2D>().AddForce(new Vector3(0f, 2f, 0f), ForceMode2D.Impulse);
         if (health <= 0)
         {
             StartCoroutine(Die());
