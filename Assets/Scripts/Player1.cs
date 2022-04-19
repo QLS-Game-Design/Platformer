@@ -9,8 +9,9 @@ public class Player1 : MonoBehaviour
     private Animator animator;
     public GameObject CoinsUI;
     public GameObject HealthUI;
+    public Transform detector;
     public float speed = 5f;
-    public float maxHealth = 10;
+    public float maxHealth = 10f;
     private float health;
     public float jumpForce = 6f;
     private float horizontalMove = 0f;
@@ -20,7 +21,9 @@ public class Player1 : MonoBehaviour
     private float timeFromLastJump = 0f;
     private bool jumpQueued = false;
     public float coins = 0;
-    private float deathDuration = 3;
+    private float deathDuration = 3f;
+    private float punchDistance = 0.2f;
+    private float punchDuration = 3f;
     // Start is called before the first frame update
     void Start()
     {
@@ -85,8 +88,15 @@ public class Player1 : MonoBehaviour
         //{
         //    rb.AddForce(new Vector3(0f, -0.5f, 0f), ForceMode2D.Impulse);
         //}
+        if (Input.GetButtonDown("Fire2")){
+            Punch();
+        }
     }
-
+    IEnumerator Punch(){
+        animator.SetBool("Punch", true);
+        yield return new WaitForSeconds(punchDuration);
+        animator.SetBool("Punch", false);
+    }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.gameObject.tag == "Map")
