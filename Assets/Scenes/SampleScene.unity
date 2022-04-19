@@ -388,7 +388,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 118847913}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.013, y: 0.081, z: 0}
+  m_LocalPosition: {x: 0.012, y: 0.09, z: -1}
   m_LocalScale: {x: 0.8944689, y: 0.7766852, z: 1}
   m_Children:
   - {fileID: 1230918243}
@@ -464,8 +464,10 @@ MonoBehaviour:
   camera: {x: 0, y: 0}
   bulletPrefab: {fileID: 644570422104198537, guid: 62140a5e93a864f479c18d7e305c20e2, type: 3}
   isFlipped: 0
-  weaponOffsetX: 0.1
-  weaponOffsetY: 0.2
+  weaponOffsetIdleX: -0.1
+  weaponOffsetIdleY: 0.25
+  weaponOffsetRunningX: 0.02
+  weaponOffsetRunningY: 0.17
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3562,7 +3564,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8019239915147560276, guid: 7e913d3c681d22141848991bbdd8543d, type: 3}
+  m_Sprite: {fileID: 2564794669964457870, guid: 1ba5e39241ad8ac49b873df6e5131010, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3657,6 +3659,7 @@ MonoBehaviour:
   speed: 5
   maxHealth: 10
   jumpForce: 6
+  horizontalMove: 0
   onGround: 1
   coins: 0
 --- !u!95 &1403820099

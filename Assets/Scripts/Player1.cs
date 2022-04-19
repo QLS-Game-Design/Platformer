@@ -16,7 +16,7 @@ public class Player1 : MonoBehaviour
     public float maxHealth = 10f;
     private float health;
     public float jumpForce = 6f;
-    private float horizontalMove = 0f;
+    public float horizontalMove = 0f;
     public bool onGround = true;
     // for advanced jumping
     private float timeFromLastJump = 0f;
@@ -31,7 +31,7 @@ public class Player1 : MonoBehaviour
     private bool weaponFlip = false;
 
 
-    private float graivtyWhileClimb = 0.2f;
+    private float gravityWhileClimb = 0.2f;
     private float wallDetectDistance = 0.5f;
     // Start is called before the first frame update
     void Start()
@@ -104,7 +104,7 @@ public class Player1 : MonoBehaviour
         // Slower gravity while climbing
         if (Physics2D.Raycast(detector.position, Vector2.right, wallDetectDistance, mapLayer) == true || Physics2D.Raycast(detector.position, Vector2.left, 2*wallDetectDistance, mapLayer) == true){
             if (GetComponent<Rigidbody2D>().velocity.y < 0){
-                GetComponent<Rigidbody2D>().gravityScale = graivtyWhileClimb;
+                GetComponent<Rigidbody2D>().gravityScale = gravityWhileClimb;
                 Debug.Log("climb");
             }
         } else {
