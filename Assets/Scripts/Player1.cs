@@ -10,6 +10,7 @@ public class Player1 : MonoBehaviour
     public GameObject CoinsUI;
     public GameObject HealthUI;
     public Transform detector;
+    public LayerMask mapLayer;
 
     public float speed = 5f;
     public float maxHealth = 10f;
@@ -29,6 +30,9 @@ public class Player1 : MonoBehaviour
     private float punchDuration = 3f;
     private bool weaponFlip = false;
 
+
+    private float graivtyWhileClimb = 0.02f;
+    private float wallDetectDistance = 0.2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -94,6 +98,20 @@ public class Player1 : MonoBehaviour
         if (Input.GetButtonDown("Fire2")){
             Punch();
         }
+
+
+
+        // Slower gravity while climbing
+        if (Physics2D.Raycast(detector.position, Vector2.right, wallDetectDistance, mapLayer) == true || Physics2D.Raycast(detector.position, Vector2.left, 2*wallDetectDistance, mapLayer) == true){
+            if (GetComponent<Rigidbody2D>().velocity.y < 0){
+                GetComponent<Rigidbody2D>().gravityScale = graivtyWhileClimb;
+                Debug.Log("climb");
+            }
+        } else {
+            GetComponent<Rigidbody2D>().gravityScale = 1;
+        }
+
+        
     }
     IEnumerator Punch(){
         animator.SetBool("Punch", true);

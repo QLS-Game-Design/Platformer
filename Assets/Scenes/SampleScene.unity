@@ -3620,6 +3620,9 @@ MonoBehaviour:
   CoinsUI: {fileID: 1943124829}
   HealthUI: {fileID: 30095933}
   detector: {fileID: 690733566}
+  mapLayer:
+    serializedVersion: 2
+    m_Bits: 64
   speed: 5
   maxHealth: 10
   jumpForce: 6
