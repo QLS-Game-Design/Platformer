@@ -10,20 +10,25 @@ public class Player1 : MonoBehaviour
     public GameObject CoinsUI;
     public GameObject HealthUI;
     public Transform detector;
+
     public float speed = 5f;
     public float maxHealth = 10f;
     private float health;
     public float jumpForce = 6f;
     private float horizontalMove = 0f;
-    private bool flipped = false;
     private bool onGround = true;
     // for advanced jumping
     private float timeFromLastJump = 0f;
     private bool jumpQueued = false;
     public float coins = 0;
+
+
+    // for weapon attacks
     private float deathDuration = 3f;
     private float punchDistance = 0.2f;
     private float punchDuration = 3f;
+    private bool weaponFlip = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,16 +48,14 @@ public class Player1 : MonoBehaviour
         // horizontal movement
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
 
-        if (horizontalMove < 0 && !flipped)
+        weaponFlip = GameObject.FindGameObjectWithTag("Weapon").GetComponent<Weapon>().isFlipped;
+        if (horizontalMove < 0 && weaponFlip)
         {
-            flipped = true;
-        } else if (horizontalMove > 0 && flipped)
+            GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>().flipX = true;
+        } else if (horizontalMove > 0 && !weaponFlip)
         {
-            flipped = false;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>().flipX = false;
         }
-        transform.rotation = Quaternion.Euler(new Vector3(0f, flipped ? 180f : 0f, 0f));
-
-
         animator.SetFloat("speed", Mathf.Abs(horizontalMove));
 
         rb.velocity = new Vector2(horizontalMove, rb.velocity.y);

@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     public Vector2 camera;
     // public Transform firePoint = this;
     public GameObject bulletPrefab;
+    public bool isFlipped = false;
     void Start()
     {
         
@@ -36,10 +37,12 @@ public class Weapon : MonoBehaviour
         // Debug.Log("y:"+my);
         if (mx < 0){
             GetComponent<SpriteRenderer>().flipX = true;
+            isFlipped = true;
             transform.position = new Vector2(GameObject.FindGameObjectWithTag("Player").transform.position.x-0.1f, transform.position.y);
             GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>().flipX = true;
         } else {
             GetComponent<SpriteRenderer>().flipX = false;
+            isFlipped = false;
             transform.position = new Vector2(GameObject.FindGameObjectWithTag("Player").transform.position.x+0.1f, transform.position.y);
             GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>().flipX = false;
         }
