@@ -106,6 +106,8 @@ public class Player1 : MonoBehaviour
             if (GetComponent<Rigidbody2D>().velocity.y < 0){
                 GetComponent<Rigidbody2D>().gravityScale = gravityWhileClimb;
                 Debug.Log("climb");
+            } else {
+                GetComponent<Rigidbody2D>().gravityScale = 1.3f;
             }
         } else {
             GetComponent<Rigidbody2D>().gravityScale = 1;

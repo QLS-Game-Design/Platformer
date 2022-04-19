@@ -463,11 +463,13 @@ MonoBehaviour:
   mainCam: {fileID: 519420031}
   camera: {x: 0, y: 0}
   bulletPrefab: {fileID: 644570422104198537, guid: 62140a5e93a864f479c18d7e305c20e2, type: 3}
+  muzzle: {fileID: 1230918242}
   isFlipped: 0
   weaponOffsetIdleX: -0.1
   weaponOffsetIdleY: 0.25
   weaponOffsetRunningX: 0.02
   weaponOffsetRunningY: 0.17
+  aimThreshold: 0.5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
