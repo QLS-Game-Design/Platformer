@@ -22,6 +22,7 @@ public class GameCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.position = new Vector3(GameObject.FindGameObjectWithTag("Player").transform.position.x,GameObject.FindGameObjectWithTag("Player").transform.position.y, -10);
     }
 
     IEnumerator Transition(){
