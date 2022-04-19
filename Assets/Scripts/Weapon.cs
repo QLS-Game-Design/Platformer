@@ -13,9 +13,12 @@ public class Weapon : MonoBehaviour
     // public Transform firePoint = this;
     public GameObject bulletPrefab;
     public bool isFlipped = false;
+    public float weaponOffsetX;
+    public float weaponOffsetY;
+    Sprite weaponSprite;
     void Start()
     {
-        
+        weaponSprite = GetComponent<SpriteRenderer>().sprite;
     }
 
     // Update is called once per frame
@@ -33,17 +36,27 @@ public class Weapon : MonoBehaviour
         float py = player.transform.position.y;
         float mx = camera.x-px;
         float my = camera.y-py;
+
+        bool isJumping = !player.GetComponent<Player1>().onGround;
+        if (isJumping)
+        {
+            GetComponent<SpriteRenderer>().sprite = null;
+            return;
+        } else
+        {
+            GetComponent<SpriteRenderer>().sprite = weaponSprite;
+        }
         // Debug.Log("x:"+mx);
         // Debug.Log("y:"+my);
         if (mx < 0){
             GetComponent<SpriteRenderer>().flipX = true;
             isFlipped = true;
-            transform.position = new Vector2(GameObject.FindGameObjectWithTag("Player").transform.position.x-0.1f, transform.position.y);
+            transform.position = new Vector2(px-weaponOffsetX, py+weaponOffsetY);
             GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>().flipX = true;
         } else {
             GetComponent<SpriteRenderer>().flipX = false;
             isFlipped = false;
-            transform.position = new Vector2(GameObject.FindGameObjectWithTag("Player").transform.position.x+0.1f, transform.position.y);
+            transform.position = new Vector2(px+weaponOffsetX, py+weaponOffsetY);
             GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>().flipX = false;
         }
         if (Input.GetButtonDown("Fire1")){

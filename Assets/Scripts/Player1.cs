@@ -16,7 +16,7 @@ public class Player1 : MonoBehaviour
     private float health;
     public float jumpForce = 6f;
     private float horizontalMove = 0f;
-    private bool onGround = true;
+    public bool onGround = true;
     // for advanced jumping
     private float timeFromLastJump = 0f;
     private bool jumpQueued = false;
