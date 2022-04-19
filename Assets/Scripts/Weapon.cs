@@ -23,7 +23,7 @@ public class Weapon : MonoBehaviour
 
     // Update is called once per frame
     void Shoot(int k){
-        GameObject clone = Instantiate(bulletPrefab,transform.position,transform.rotation);
+        GameObject clone = Instantiate(bulletPrefab,GameObject.FindGameObjectWithTag("Muzzle").transform.position,transform.rotation);
         Physics2D.IgnoreCollision(clone.GetComponent<Collider2D>(), this.GetComponentInParent<Collider2D>());
         clone.GetComponent<Bullet>().speed *= k;
     }

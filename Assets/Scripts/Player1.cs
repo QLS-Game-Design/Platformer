@@ -31,8 +31,8 @@ public class Player1 : MonoBehaviour
     private bool weaponFlip = false;
 
 
-    private float graivtyWhileClimb = 0.02f;
-    private float wallDetectDistance = 0.2f;
+    private float graivtyWhileClimb = 0.2f;
+    private float wallDetectDistance = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
