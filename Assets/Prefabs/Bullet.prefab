@@ -104,7 +104,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &-7503958082922161596
 CircleCollider2D:
@@ -136,3 +136,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   rb: {fileID: -6874523883091702629}
+  impactEffect: {fileID: 4161173067367869477, guid: 7df94639ac1b92545a12f9e6c3de0032, type: 3}
