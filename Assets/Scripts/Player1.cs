@@ -14,7 +14,7 @@ public class Player1 : MonoBehaviour
 
     public float speed = 5f;
     public float maxHealth = 10f;
-    private float health;
+    public float health;
     public float jumpForce = 6f;
     public float horizontalMove = 0f;
     public bool onGround = true;
@@ -46,8 +46,9 @@ public class Player1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0){
-            StartCoroutine(Die());
+        if (health <= 0)
+        {
+            return;
         }
         // horizontal movement
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
@@ -106,7 +107,6 @@ public class Player1 : MonoBehaviour
         if (Physics2D.Raycast(detector.position, Vector2.right, wallDetectDistance, mapLayer) == true || Physics2D.Raycast(detector.position, Vector2.left, 2*wallDetectDistance, mapLayer) == true){
             if (GetComponent<Rigidbody2D>().velocity.y < 0){
                 GetComponent<Rigidbody2D>().gravityScale = gravityWhileClimb;
-                Debug.Log("climb");
             } else {
                 GetComponent<Rigidbody2D>().gravityScale = 1.3f;
             }
@@ -123,22 +123,35 @@ public class Player1 : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (health <= 0)
+        {
+            return;
+        }
         if (collision.collider.gameObject.tag == "Map")
         {
             onGround = true;
             animator.SetBool("JumpUp", false);
         }   else if (collision.collider.gameObject.tag == "Enemy")
         {
-            Debug.Log("wow");
             health-=1;
             HealthUI.GetComponent<Text>().text = "Health: " + health.ToString(); 
             animator.SetBool("IsHurt", true);
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y+5);
+            if (health <= 0)
+            {
+                animator.SetBool("IsHurt", false);
+                animator.SetBool("JumpUp", false);
+                StartCoroutine(Die());
+            }
         }
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
+        if (health <= 0)
+        {
+            return;
+        }
         if (collision.collider.gameObject.tag == "Map")
         {
             onGround = false;
@@ -151,6 +164,10 @@ public class Player1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (health <= 0)
+        {
+            return;
+        }
         if (collision.GetComponent<Collider2D>().gameObject.tag == "Coin")
         {
             coins++;
@@ -160,6 +177,7 @@ public class Player1 : MonoBehaviour
     }
     IEnumerator Die()
 	{
+        Debug.Log("died");
         animator.SetBool("IsDead", true);
         HealthUI.GetComponent<Text>().text = "You died."; 
         yield return new WaitForSeconds(deathDuration);

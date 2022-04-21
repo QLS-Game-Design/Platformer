@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     public float Damage;
     public GameObject player;
-    Vector2 mousePos;
+    //Vector2 mousePos;
     public Camera mainCam;
     public Vector2 camera;
     // public Transform firePoint = this;
@@ -33,7 +33,16 @@ public class Weapon : MonoBehaviour
     }
     void Update()
     {
-        
+        if (!player.GetComponent<Player1>().onGround || player.GetComponent<Player1>().health <= 0)
+        {
+            GetComponent<SpriteRenderer>().sprite = null;
+            return;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = weaponSprite;
+        }
+
         float weaponOffsetX, weaponOffsetY;
         if (Mathf.Abs(player.GetComponent<Player1>().horizontalMove) > 0)
         {
@@ -46,22 +55,13 @@ public class Weapon : MonoBehaviour
             weaponOffsetY = weaponOffsetIdleY;
         }
 
-        mousePos = Input.mousePosition;
+        //mousePos = Input.mousePosition;
         camera = mainCam.ScreenToWorldPoint(Input.mousePosition);
         // Debug.Log(mousePos.x);
         float px = player.transform.position.x; // -this.transform.position.x
         float py = player.transform.position.y; //-this.transform.position.y
         float mx = camera.x-px;
         float my = camera.y-py;
-
-        if (!player.GetComponent<Player1>().onGround)
-        {
-            GetComponent<SpriteRenderer>().sprite = null;
-            return;
-        } else
-        {
-            GetComponent<SpriteRenderer>().sprite = weaponSprite;
-        }
 
 
         if (mx < 0){ // if the mouse is to the left of the character
@@ -100,11 +100,7 @@ public class Weapon : MonoBehaviour
         float cx = camera.x-muzzle.transform.position.x;
         float theta = Mathf.Atan(cy/cx)*(180/Mathf.PI);
         if(Mathf.Sqrt(Mathf.Pow(cy,2) + Mathf.Pow(cx,2)) > aimThreshold){
-            this.transform.eulerAngles = new Vector3(
-            this.transform.eulerAngles.x,
-            this.transform.eulerAngles.y,
-            theta
-        );
+            this.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x, this.transform.eulerAngles.y, theta);
         }
     }
 }

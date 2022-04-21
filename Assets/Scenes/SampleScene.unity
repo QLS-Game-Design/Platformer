@@ -3781,7 +3781,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   speed: 5
-  maxHealth: 10
+  maxHealth: 5
   jumpForce: 6
   horizontalMove: 0
   onGround: 1
