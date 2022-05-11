@@ -63,7 +63,6 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.collider.gameObject.tag == "Bullet")
         {
-            Debug.Log("damage");
             TakeDamage(1);
         }
     }
