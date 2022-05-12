@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Player1 : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private Animator animator;
+    public Animator animator;
     public GameObject CoinsUI;
     public GameObject HealthUI;
     public Transform detector;
@@ -123,10 +123,6 @@ public class Player1 : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (health <= 0)
-        {
-            return;
-        }
         if (collision.collider.gameObject.tag == "Map")
         {
             onGround = true;
@@ -134,15 +130,20 @@ public class Player1 : MonoBehaviour
         }   else if (collision.collider.gameObject.tag == "Enemy")
         {
             health-=1;
-            HealthUI.GetComponent<Text>().text = "Health: " + health.ToString(); 
             animator.SetBool("IsHurt", true);
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y+5);
-            if (health <= 0)
-            {
-                animator.SetBool("IsHurt", false);
-                animator.SetBool("JumpUp", false);
-                StartCoroutine(Die());
-            }
+        } else if (collision.collider.gameObject.tag == "EnemyBullet")
+        {
+            health-=collision.collider.gameObject.GetComponent<EnemyBullet>().damage;
+            animator.SetBool("IsHurt", true);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y+5);
+        }
+        HealthUI.GetComponent<Text>().text = "Health: " + health.ToString(); 
+        if (health <= 0)
+        {
+            animator.SetBool("IsHurt", false);
+            animator.SetBool("JumpUp", false);
+            StartCoroutine(Die());
         }
     }
 

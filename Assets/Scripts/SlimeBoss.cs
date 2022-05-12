@@ -16,6 +16,8 @@ public class SlimeBoss : MonoBehaviour
     private float centerX = 0;
     Vector3 currentEulerAngles;
     Quaternion currentRotation;
+    public float timeFromLastShot = 0f;
+    public float shotWaitTime = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,7 +63,12 @@ public class SlimeBoss : MonoBehaviour
         currentEulerAngles = new Vector3(this.transform.eulerAngles.x, this.transform.eulerAngles.y, theta);
         currentRotation.eulerAngles = currentEulerAngles;
         transform.rotation = currentRotation;
-        GameObject clone = Instantiate(bulletPrefab,transform.position, transform.rotation);
+        if (timeFromLastShot > shotWaitTime){
+            GameObject clone = Instantiate(bulletPrefab,transform.position, transform.rotation);
+            timeFromLastShot = 0;
+        } else{
+            timeFromLastShot += Time.deltaTime;
+        }
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
