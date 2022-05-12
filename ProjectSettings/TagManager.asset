@@ -10,6 +10,7 @@ TagManager:
   - Weapon
   - Muzzle
   - Bullet
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
