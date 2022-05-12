@@ -33,7 +33,7 @@ public class Weapon : MonoBehaviour
     }
     void Update()
     {
-        if (!player.GetComponent<Player1>().onGround || player.GetComponent<Player1>().health <= 0)
+        if (!player.GetComponent<Player1>().onGround || player.GetComponent<Player1>().health <= 0 || player.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Player_Hurt"))
         {
             GetComponent<SpriteRenderer>().sprite = null;
             return;

@@ -4,38 +4,102 @@ using UnityEngine;
 
 public class SlimeBoss : MonoBehaviour
 {
+    private LayerMask playerLayer;
     public float maxHealth = 20f;
     public float health;
     public Vector3 target;
     public int stage;
-    private float stageOneThreshold = 15f;
-    private float stageTwoThreshold = 10f;
+    public float stageOneThreshold = 40f;
+    public float stageTwoThreshold = 20f;
     public GameObject player;
     public GameObject bulletPrefab;
+    public GameObject healthBar;
     public float flySpeedX = 0.05f;
     private float centerX = 0;
     Vector3 currentEulerAngles;
     Quaternion currentRotation;
     public float timeFromLastShot = 0f;
     public float shotWaitTime = 0.5f;
+    private float timeFromLastSmash = 0f;
+    public float smashWaitTime = 3f;
+    private bool runningSmashAttack;
+    private bool tracking;
+    private bool attacking;
+    private float attackTime;
+    public float smashAttackPause = 0.75f;
+    public float smashAttackDuration = 1f;
+    public float smashSpeed = 0.05f;
+    private bool hitGround;
+    public GameObject deathEffect;
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
         stage = 0;
+        playerLayer = LayerMask.GetMask("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+        healthBar.GetComponent<HealthBar>().updateValue(health / maxHealth);
+        if (runningSmashAttack)
+        {
+            if (tracking)
+            {
+                target.x = player.transform.position.x;
+                transform.position = Vector3.MoveTowards(transform.position, target, 0.05f);
+                if (Mathf.Abs(transform.position.x - player.transform.position.x) < 0.1)
+                {
+                    Debug.Log(transform.position.x - player.transform.position.x);
+                    tracking = false;
+                    StartCoroutine(SmashAttackPause());
+                }
+            } else if (attacking)
+            {
+                if (!hitGround)
+                {
+                    transform.position += Vector3.down * smashSpeed;
+                }
+                attackTime += Time.deltaTime;
+            }
+            if (attackTime > smashAttackDuration)
+            {
+                Debug.Log("stopping smash attack");
+                timeFromLastSmash = 0f;
+                tracking = false;
+                attacking = false;
+                attackTime = 0f;
+                runningSmashAttack = false;
+            }
+            return;
+        }
+
         if (health<=stageTwoThreshold){
             ShootDown();
         } 
         if (health<=stageOneThreshold){
             flyUp();
-        } else{
+            if (timeFromLastSmash > smashWaitTime)
+            {
+                runningSmashAttack = true;
+                tracking = true;
+                Debug.Log("starting smash attack & tracking");
+            } else
+            {
+                timeFromLastSmash += Time.deltaTime;
+            }
+        } else {
             target.x = transform.position.x;
         }
+    }
+
+    IEnumerator SmashAttackPause()
+    {
+        Debug.Log("stopping tracking");
+        yield return new WaitForSeconds(smashAttackPause);
+        attacking = true;
+        Debug.Log("starting attacking");
     }
 
     public void TakeDamage(int damage)
@@ -49,6 +113,7 @@ public class SlimeBoss : MonoBehaviour
 
     IEnumerator Die()
     {
+        Instantiate(deathEffect, transform.position, transform.rotation);
         yield return new WaitForSeconds(0.1f);
         GameObject.Destroy(gameObject);
     }
@@ -75,10 +140,26 @@ public class SlimeBoss : MonoBehaviour
         if (collision.collider.gameObject.tag == "Bullet")
         {
             TakeDamage(1);
-        } else if (collision.collider.gameObject.tag == "Map"){
-            Debug.Log("hit wall");
+        }
+        if (collision.gameObject.tag == "Map")
+        {
+            hitGround = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Map")
+        {
+            hitGround = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Boundary")
+        {
             flySpeedX *= -1;
         }
-        Debug.Log(collision.collider.gameObject.tag);
     }
 }

@@ -40,7 +40,7 @@ public class Player1 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         CoinsUI.GetComponent<Text>().text = "Coins: " + coins.ToString();
-        HealthUI.GetComponent<Text>().text = "Health: " + health.ToString(); 
+        HealthUI.GetComponent<Text>().text = "Health: " + health.ToString();
     }
 
     // Update is called once per frame
@@ -168,6 +168,13 @@ public class Player1 : MonoBehaviour
         if (health <= 0)
         {
             return;
+        }
+        if (collision.gameObject.tag == "Respawn")
+        {
+            health = 0;
+            animator.SetBool("IsHurt", false);
+            animator.SetBool("JumpUp", false);
+            StartCoroutine(Die());
         }
         if (collision.GetComponent<Collider2D>().gameObject.tag == "Coin")
         {
