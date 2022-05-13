@@ -425,7 +425,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228709075}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.735579, y: 3.0772052, z: 10.166192}
+  m_LocalPosition: {x: -3.735579, y: 2, z: 10.166192}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 1997614623}
@@ -550,6 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb42de24f05bdde4fa29195f08b4fd69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   CoinsUI: {fileID: 1675408044}
   HealthUI: {fileID: 1970205708}
   detector: {fileID: 1513242594}
@@ -1331,7 +1332,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1385044494}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.52, y: 3.0772052, z: 10.166192}
+  m_LocalPosition: {x: -1.52, y: 2, z: 10.166192}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 1997614623}
@@ -1529,7 +1530,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440688139}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.61, y: 3.0772052, z: 10.166192}
+  m_LocalPosition: {x: -2.61, y: 2, z: 10.166192}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 1997614623}

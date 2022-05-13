@@ -19,6 +19,9 @@ public class Weapon : MonoBehaviour
     public float weaponOffsetRunningX;
     public float weaponOffsetRunningY;
     public float aimThreshold = 1;
+    public bool shootingBurstOn = false;
+    private float timeFromLastShot = 0f;
+    public float shotWaitTime = 0.2f;
     Sprite weaponSprite;
     void Start()
     {
@@ -90,11 +93,28 @@ public class Weapon : MonoBehaviour
             }
             
         }
-        if (Input.GetButtonDown("Fire1")){
-            if (mx < 0)
-                Shoot(-1);
-            else
-                Shoot(1);
+        if (Input.GetButtonDown("Switch")){
+            shootingBurstOn = !shootingBurstOn;
+        }
+        if (shootingBurstOn){
+            if (Input.GetButton("Fire1")){
+                if (timeFromLastShot > shotWaitTime){
+                    if (mx < 0)
+                        Shoot(-1);
+                    else
+                        Shoot(1);
+                    timeFromLastShot = 0;
+                } else {
+                    timeFromLastShot += Time.deltaTime;
+                }
+            }
+        } else {
+            if (Input.GetButtonDown("Fire1")){
+                if (mx < 0)
+                    Shoot(-1);
+                else
+                    Shoot(1);
+            }
         }
         float cy = camera.y-muzzle.transform.position.y;
         float cx = camera.x-muzzle.transform.position.x;

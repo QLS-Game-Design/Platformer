@@ -18,7 +18,7 @@ public class SlimeBoss : MonoBehaviour
     private float centerX = 0;
     Vector3 currentEulerAngles;
     Quaternion currentRotation;
-    public float timeFromLastShot = 0f;
+    private float timeFromLastShot = 0f;
     public float shotWaitTime = 0.5f;
     private float timeFromLastSmash = 0f;
     public float smashWaitTime = 3f;

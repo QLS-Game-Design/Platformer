@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag != "Player")
+        if (col.gameObject.tag != "Player" && col.gameObject.tag != "Bullet")
         {
             Instantiate(impactEffect, transform.position, transform.rotation);
             Destroy(this.gameObject);

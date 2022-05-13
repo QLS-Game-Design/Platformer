@@ -928,6 +928,8 @@ MonoBehaviour:
   weaponOffsetRunningX: 0.02
   weaponOffsetRunningY: 0.17
   aimThreshold: 0.5
+  shootingBurstOn: 1
+  shotWaitTime: 0.2
 --- !u!212 &1230890398
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2032,7 +2034,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934633913}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.6, y: -0.5, z: 0}
+  m_LocalPosition: {x: 2.77, y: -0.24, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2076,12 +2078,11 @@ MonoBehaviour:
   bulletPrefab: {fileID: 644570422104198537, guid: e6b6203af713cfa4f857e6d0eaec5371, type: 3}
   healthBar: {fileID: 82520481}
   flySpeedX: 0.01
-  timeFromLastShot: 0
   shotWaitTime: 0.5
-  smashWaitTime: 3
+  smashWaitTime: 0.5
   smashAttackPause: 0.75
-  smashAttackDuration: 1
-  smashSpeed: 0.05
+  smashAttackDuration: 0.5
+  smashSpeed: 0.2
   deathEffect: {fileID: 4161173067367869477, guid: e322e167e54167f4ba26e8ea54b84cef, type: 3}
 --- !u!50 &1934633918
 Rigidbody2D:
