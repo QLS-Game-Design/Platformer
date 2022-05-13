@@ -76,6 +76,8 @@ public class SlimeBoss : MonoBehaviour
         }
 
         if (health<=stageTwoThreshold){
+            this.GetComponent<SpriteRenderer>().color = Color.red; // make boss look angry
+            flySpeedX *= 2; // fly faster too
             ShootDown();
         } 
         if (health<=stageOneThreshold){

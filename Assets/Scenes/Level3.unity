@@ -929,7 +929,7 @@ MonoBehaviour:
   weaponOffsetRunningY: 0.17
   aimThreshold: 0.5
   shootingBurstOn: 1
-  shotWaitTime: 0.2
+  shotWaitTime: 0.01
 --- !u!212 &1230890398
 SpriteRenderer:
   m_ObjectHideFlags: 0
