@@ -5,13 +5,15 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float Damage;
+    public float damageBullet;
+    public float damageGrenade;
     public GameObject player;
     //Vector2 mousePos;
     public Camera mainCam;
     public Vector2 camera;
     // public Transform firePoint = this;
     public GameObject bulletPrefab;
+    public GameObject grenadePrefab;
     public GameObject muzzle;
     public bool isFlipped = false;
     public float weaponOffsetIdleX;
@@ -26,13 +28,21 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         weaponSprite = GetComponent<SpriteRenderer>().sprite;
+        bulletPrefab.GetComponent<Bullet>().damage = damageBullet;
+        grenadePrefab.GetComponent<Grenade>().damage = damageGrenade;
     }
 
     // Update is called once per frame
     void Shoot(int k){
-        GameObject clone = Instantiate(bulletPrefab,muzzle.transform.position, muzzle.transform.rotation);
-        Physics2D.IgnoreCollision(clone.GetComponent<Collider2D>(), this.GetComponentInParent<Collider2D>());
-        clone.GetComponent<Bullet>().speed *= k;
+        if (shootingBurstOn){
+            GameObject clone = Instantiate(bulletPrefab,muzzle.transform.position, muzzle.transform.rotation);
+            Physics2D.IgnoreCollision(clone.GetComponent<Collider2D>(), this.GetComponentInParent<Collider2D>());
+            clone.GetComponent<Bullet>().speed *= k;
+        } else {
+            GameObject clone = Instantiate(grenadePrefab,muzzle.transform.position, muzzle.transform.rotation);
+            Physics2D.IgnoreCollision(clone.GetComponent<Collider2D>(), this.GetComponentInParent<Collider2D>());
+            clone.GetComponent<Grenade>().speed *= k;
+        }
     }
     void Update()
     {

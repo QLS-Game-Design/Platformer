@@ -298,11 +298,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 941a3bf4e659d144fa8a07196eb81f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
+  damageBullet: 1
+  damageGrenade: 2
   player: {fileID: 1403820093}
   mainCam: {fileID: 519420031}
   camera: {x: 0, y: 0}
   bulletPrefab: {fileID: 644570422104198537, guid: 62140a5e93a864f479c18d7e305c20e2, type: 3}
+  grenadePrefab: {fileID: 3821636232379042299, guid: 8b5e9a8380498aa42a135323ae88db14, type: 3}
   muzzle: {fileID: 1230918242}
   isFlipped: 0
   weaponOffsetIdleX: -0.1
@@ -310,6 +312,8 @@ MonoBehaviour:
   weaponOffsetRunningX: 0.02
   weaponOffsetRunningY: 0.17
   aimThreshold: 0.5
+  shootingBurstOn: 0
+  shotWaitTime: 0.2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3123,6 +3127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb42de24f05bdde4fa29195f08b4fd69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   CoinsUI: {fileID: 1943124829}
   HealthUI: {fileID: 30095933}
   detector: {fileID: 690733566}

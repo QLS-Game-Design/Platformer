@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0f, flipped ? 180f : 0f, 0f));
         rb.velocity = new Vector2(flipped ? -speed : speed, rb.velocity.y);
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         this.GetComponent<Rigidbody2D>().AddForce(new Vector3(0f, 2f, 0f), ForceMode2D.Impulse);
@@ -63,7 +63,11 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.collider.gameObject.tag == "Bullet")
         {
-            TakeDamage(1);
+            TakeDamage(collision.collider.gameObject.GetComponent<Bullet>().damage);
+        }
+        if (collision.collider.gameObject.tag == "Grenade")
+        {
+            TakeDamage(collision.collider.gameObject.GetComponent<Grenade>().damage);
         }
     }
 }

@@ -104,7 +104,7 @@ public class SlimeBoss : MonoBehaviour
         Debug.Log("starting attacking");
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)
@@ -141,7 +141,11 @@ public class SlimeBoss : MonoBehaviour
     {
         if (collision.collider.gameObject.tag == "Bullet")
         {
-            TakeDamage(1);
+            TakeDamage(collision.collider.gameObject.GetComponent<Bullet>().damage);
+        }
+        if (collision.collider.gameObject.tag == "Grenade")
+        {
+            TakeDamage(collision.collider.gameObject.GetComponent<Grenade>().damage);
         }
         if (collision.gameObject.tag == "Map")
         {
