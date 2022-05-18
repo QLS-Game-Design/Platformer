@@ -31,6 +31,7 @@ public class SlimeBoss : MonoBehaviour
     public float smashSpeed = 0.05f;
     private bool hitGround;
     public GameObject deathEffect;
+    public GameObject levelLoader;
     // Start is called before the first frame update
     void Start()
     {
@@ -109,6 +110,7 @@ public class SlimeBoss : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            levelLoader.GetComponent<LevelLoader>().isGameOver = true;
             StartCoroutine(Die());
         }
     }
@@ -119,7 +121,6 @@ public class SlimeBoss : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         GameObject.Destroy(gameObject);
     }
-
     private void flyUp(){
         transform.position = Vector3.MoveTowards(transform.position, target, 0.05f);
         target.x += flySpeedX;

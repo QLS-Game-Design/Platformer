@@ -233,7 +233,7 @@ MonoBehaviour:
   weaponOffsetRunningX: 0.02
   weaponOffsetRunningY: 0.17
   aimThreshold: 0.5
-  shootingBurstOn: 0
+  shootingBurstOn: 1
   shotWaitTime: 0.2
   gunSprite: {fileID: 21300000, guid: 904a23d49f32c4e43a477e766e06a8e5, type: 3}
   grenadeSprite: {fileID: 21300000, guid: d78b7798c45ac914193c77e56107fd8c, type: 3}

@@ -442,6 +442,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6676456058076707730, guid: ad37d37e7ef85e541bf55464ae9405b7, type: 3}
   m_PrefabInstance: {fileID: 152158067}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &152158069 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6676456058076707729, guid: ad37d37e7ef85e541bf55464ae9405b7, type: 3}
+  m_PrefabInstance: {fileID: 152158067}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &172282912
 GameObject:
   m_ObjectHideFlags: 0
@@ -2744,9 +2749,10 @@ MonoBehaviour:
   shotWaitTime: 0.25
   smashWaitTime: 0.7
   smashAttackPause: 0.5
-  smashAttackDuration: 0.1
+  smashAttackDuration: 0.2
   smashSpeed: 0.3
   deathEffect: {fileID: 4161173067367869477, guid: e322e167e54167f4ba26e8ea54b84cef, type: 3}
+  levelLoader: {fileID: 152158069}
 --- !u!50 &1934633918
 Rigidbody2D:
   serializedVersion: 4
