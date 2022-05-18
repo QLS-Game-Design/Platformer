@@ -8,7 +8,7 @@ public class Player1 : MonoBehaviour
     private Rigidbody2D rb;
     public Animator animator;
     public GameObject CoinsUI;
-    public GameObject HealthUI;
+    public GameObject healthBar;
     public Transform detector;
     public LayerMask mapLayer;
 
@@ -39,8 +39,7 @@ public class Player1 : MonoBehaviour
         health = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        CoinsUI.GetComponent<Text>().text = "Coins: " + coins.ToString();
-        HealthUI.GetComponent<Text>().text = "Health: " + health.ToString();
+        CoinsUI.GetComponent<Text>().text = coins.ToString();
     }
 
     // Update is called once per frame
@@ -138,7 +137,7 @@ public class Player1 : MonoBehaviour
             animator.SetBool("IsHurt", true);
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y+5);
         }
-        HealthUI.GetComponent<Text>().text = "Health: " + health.ToString(); 
+        healthBar.GetComponent<Slider>().value = health / maxHealth;
         if (health <= 0)
         {
             animator.SetBool("IsHurt", false);
@@ -180,14 +179,13 @@ public class Player1 : MonoBehaviour
         {
             coins++;
             Destroy(collision.GetComponent<Collider2D>().gameObject);
-            CoinsUI.GetComponent<Text>().text = "Coins: " + coins.ToString();
+            CoinsUI.GetComponent<Text>().text = coins.ToString();
         }
     }
     IEnumerator Die()
 	{
         Debug.Log("died");
         animator.SetBool("IsDead", true);
-        HealthUI.GetComponent<Text>().text = "You died."; 
         yield return new WaitForSeconds(deathDuration);
         Application.LoadLevel(Application.loadedLevel);
 	}
