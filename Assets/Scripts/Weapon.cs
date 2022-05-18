@@ -25,6 +25,8 @@ public class Weapon : MonoBehaviour
     private float timeFromLastShot = 0f;
     public float shotWaitTime = 0.2f;
     Sprite weaponSprite;
+    public Sprite gunSprite;
+    public Sprite grenadeSprite;
     void Start()
     {
         weaponSprite = GetComponent<SpriteRenderer>().sprite;
@@ -104,7 +106,7 @@ public class Weapon : MonoBehaviour
             
         }
         if (Input.GetButtonDown("Switch")){
-            shootingBurstOn = !shootingBurstOn;
+            SwitchWeapon();
         }
         if (shootingBurstOn){
             if (Input.GetButton("Fire1")){
@@ -131,6 +133,14 @@ public class Weapon : MonoBehaviour
         float theta = Mathf.Atan(cy/cx)*(180/Mathf.PI);
         if(Mathf.Sqrt(Mathf.Pow(cy,2) + Mathf.Pow(cx,2)) > aimThreshold){
             this.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x, this.transform.eulerAngles.y, theta);
+        }
+    }
+    void SwitchWeapon(){
+        shootingBurstOn = !shootingBurstOn;
+        if (shootingBurstOn){
+            weaponSprite = gunSprite;
+        } else {
+            weaponSprite = grenadeSprite;
         }
     }
 }

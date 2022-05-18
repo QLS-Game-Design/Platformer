@@ -1228,7 +1228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageBullet: 1
-  damageGrenade: 2
+  damageGrenade: 3
   player: {fileID: 427925031}
   mainCam: {fileID: 671983720}
   camera: {x: 0, y: 0}
@@ -1243,6 +1243,8 @@ MonoBehaviour:
   aimThreshold: 0.5
   shootingBurstOn: 1
   shotWaitTime: 0.15
+  gunSprite: {fileID: 21300000, guid: 904a23d49f32c4e43a477e766e06a8e5, type: 3}
+  grenadeSprite: {fileID: 21300000, guid: d78b7798c45ac914193c77e56107fd8c, type: 3}
 --- !u!212 &1230890398
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2734,16 +2736,16 @@ MonoBehaviour:
   target: {x: 0, y: 2.5, z: 0}
   stage: 0
   stageOneThreshold: 79
-  stageTwoThreshold: 30
+  stageTwoThreshold: 50
   player: {fileID: 427925031}
   bulletPrefab: {fileID: 644570422104198537, guid: e6b6203af713cfa4f857e6d0eaec5371, type: 3}
   healthBar: {fileID: 82520481}
   flySpeedX: 0.01
-  shotWaitTime: 0.5
-  smashWaitTime: 0.5
-  smashAttackPause: 0.75
-  smashAttackDuration: 0.3
-  smashSpeed: 0.2
+  shotWaitTime: 0.25
+  smashWaitTime: 0.7
+  smashAttackPause: 0.5
+  smashAttackDuration: 0.1
+  smashSpeed: 0.3
   deathEffect: {fileID: 4161173067367869477, guid: e322e167e54167f4ba26e8ea54b84cef, type: 3}
 --- !u!50 &1934633918
 Rigidbody2D:
@@ -2764,7 +2766,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1 &2042384476
 GameObject:

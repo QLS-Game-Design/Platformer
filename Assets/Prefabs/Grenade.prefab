@@ -100,7 +100,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.2
+  m_GravityScale: 0.4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b67360f4c55831408e5817ed3f596d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  damage: 2
+  speed: 7
+  damage: 3
   rb: {fileID: -5289723469627498733}
   impactEffect: {fileID: 4161173067367869477, guid: c18d3cc8278656a41aa142423dd520c4, type: 3}
