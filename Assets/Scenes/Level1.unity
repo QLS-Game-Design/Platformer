@@ -235,6 +235,8 @@ MonoBehaviour:
   aimThreshold: 0.5
   shootingBurstOn: 0
   shotWaitTime: 0.2
+  gunSprite: {fileID: 21300000, guid: 904a23d49f32c4e43a477e766e06a8e5, type: 3}
+  grenadeSprite: {fileID: 21300000, guid: d78b7798c45ac914193c77e56107fd8c, type: 3}
 --- !u!1 &484996918 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9039668464967230260, guid: c7ad6c8bfa8221c4ea9e8c08c2fa4e10, type: 3}
