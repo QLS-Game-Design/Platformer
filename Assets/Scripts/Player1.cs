@@ -95,10 +95,10 @@ public class Player1 : MonoBehaviour
         //{
         //    rb.AddForce(new Vector3(0f, -0.5f, 0f), ForceMode2D.Impulse);
         //}
-        if (Input.GetButtonDown("Fire2")){
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameCamera>().NextPos();
-            Punch();
-        }
+        //if (Input.GetButtonDown("Fire2")){
+        //    GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameCamera>().NextPos();
+        //    Punch();
+        //}
 
 
 

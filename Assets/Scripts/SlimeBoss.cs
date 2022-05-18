@@ -51,7 +51,7 @@ public class SlimeBoss : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, target, 0.05f);
                 if (Mathf.Abs(transform.position.x - player.transform.position.x) < 0.1)
                 {
-                    Debug.Log(transform.position.x - player.transform.position.x);
+                    //Debug.Log(transform.position.x - player.transform.position.x);
                     tracking = false;
                     StartCoroutine(SmashAttackPause());
                 }
@@ -77,7 +77,7 @@ public class SlimeBoss : MonoBehaviour
 
         if (health<=stageTwoThreshold){
             this.GetComponent<SpriteRenderer>().color = Color.red; // make boss look angry
-            flySpeedX *= 2; // fly faster too
+            //flySpeedX *= 2; // fly faster too
             ShootDown();
         } 
         if (health<=stageOneThreshold){
