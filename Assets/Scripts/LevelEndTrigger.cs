@@ -10,6 +10,7 @@ public class LevelEndTrigger : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
+            StaticTracker.UpdateCoins();
             levelLoader.GetComponent<LevelLoader>().loadNextLevel();
         }
     }

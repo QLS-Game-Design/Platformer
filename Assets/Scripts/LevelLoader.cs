@@ -9,17 +9,22 @@ public class LevelLoader : MonoBehaviour
     public bool isGameOver = false;
     public float transitionTime = 1f;
 
-    public void loadNextLevel()
+    private void Start()
     {
         transition = GetComponent<Animator>();
-        StartCoroutine(loadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    IEnumerator loadLevel(int levelIndex)
+    public void loadNextLevel()
+    {
+        //StartCoroutine(loadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        StartCoroutine(loadLevel("Shop"));
+    }
+
+    IEnumerator loadLevel(string level)
     {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene(levelIndex);
+        SceneManager.LoadScene(level);
     }
     
     void FixedUpdate(){
@@ -29,9 +34,9 @@ public class LevelLoader : MonoBehaviour
     }
     IEnumerator loadEnding(){
         yield return new WaitForSeconds(1.5f);
-        loadNextLevel();
+        StartCoroutine(loadLevel("Ending"));
     }
     public void restart(){
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Main Menu");
     }
 }

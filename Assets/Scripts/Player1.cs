@@ -39,6 +39,8 @@ public class Player1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = StaticTracker.maxHealth;
+        coins = StaticTracker.coins;
         health = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();

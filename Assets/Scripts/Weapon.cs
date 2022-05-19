@@ -34,8 +34,8 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         weaponSprite = GetComponent<SpriteRenderer>().sprite;
-        bulletPrefab.GetComponent<Bullet>().damage = damageBullet;
-        grenadePrefab.GetComponent<Grenade>().damage = damageGrenade;
+        bulletPrefab.GetComponent<Bullet>().damage = StaticTracker.gunDamage;
+        grenadePrefab.GetComponent<Grenade>().damage = StaticTracker.grenadeDamage;
         gunFireAudio = GameObject.Find("GunFireAudio").GetComponent<AudioSource>();
         grenadeFireAudio = GameObject.Find("GrenadeFireAudio").GetComponent<AudioSource>();
     }
