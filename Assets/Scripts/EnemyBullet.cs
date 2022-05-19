@@ -17,7 +17,7 @@ public class EnemyBullet : MonoBehaviour
         if (isBoss){
             rb.velocity = -transform.up * speed;
         } else{
-            rb.velocity = -transform.right * speed;
+            rb.velocity = transform.right * speed;
         }
     }
     void FixedUpdate(){

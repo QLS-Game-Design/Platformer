@@ -38,9 +38,8 @@ public class Turret : MonoBehaviour
         //     flipped = !flipped;
         // }
 
-        // transform.rotation = Quaternion.Euler(new Vector3(0f, flipped ? 180f : 0f, 0f));
-        // rb.velocity = new Vector2(flipped ? -speed : speed, rb.velocity.y);
-        Shoot();
+        transform.rotation = Quaternion.Euler(new Vector3(0f, flipped ? 180f : 0f, 0f));
+        Shoot(flipped);
     }
     public void TakeDamage(float damage)
     {
@@ -57,10 +56,13 @@ public class Turret : MonoBehaviour
         GameObject.Destroy(gameObject);
     }
     
-    private void Shoot(){
+    private void Shoot(bool flipped){
         if (timeFromLastShot > shotWaitTime){
             GameObject clone = Instantiate(bulletPrefab,muzzle.transform.position, muzzle.transform.rotation);
             Physics2D.IgnoreCollision(clone.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            // if (flipped){
+            //     clone.GetComponent<EnemyBullet>().speed *= -1;
+            // }
             timeFromLastShot = 0;
         } else{
             timeFromLastShot += Time.deltaTime;
