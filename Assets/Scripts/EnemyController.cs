@@ -16,6 +16,8 @@ public class EnemyController : MonoBehaviour
     public float speed = 1.5f;
     public bool flipped = false; // false is right, true is left (to change default direction can just change this field in inspector)
 
+    public AudioSource enemyDeathAudio;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +25,8 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         mapLayer = LayerMask.GetMask("Map");
         health = maxHealth;
-    //     Physics2D.IgnoreCollision(GameObject.Find("Player").GetComponent<BoxCollider2D>(), GetComponent<CircleCollider2D>());
+        enemyDeathAudio = GameObject.Find("EnemyDeathAudio").GetComponent<AudioSource>();
+        //     Physics2D.IgnoreCollision(GameObject.Find("Player").GetComponent<BoxCollider2D>(), GetComponent<CircleCollider2D>());
     }
 
     void FixedUpdate()
@@ -52,6 +55,7 @@ public class EnemyController : MonoBehaviour
     IEnumerator Die()
     {
         yield return new WaitForSeconds(0.1f);
+        enemyDeathAudio.Play();
         GameObject.Destroy(gameObject);
     }
     //private void OnDrawGizmos()

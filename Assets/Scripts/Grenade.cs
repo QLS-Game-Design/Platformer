@@ -10,9 +10,12 @@ public class Grenade : MonoBehaviour
     public GameObject impactEffect;
     Vector3 m_EulerAngleVelocity;
 
+    public AudioSource grenadeHitAudio;
+
     // Start is called before the first frame update
     void Start()
     {
+        grenadeHitAudio = GameObject.Find("GrenadeHitAudio").GetComponent<AudioSource>();
         rb.velocity = transform.right * speed;
     }
     void FixedUpdate(){
@@ -22,6 +25,7 @@ public class Grenade : MonoBehaviour
     {
         if (col.gameObject.tag != "Player" && col.gameObject.tag != "Grenade")
         {
+            grenadeHitAudio.Play();
             Instantiate(impactEffect, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }

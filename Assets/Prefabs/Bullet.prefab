@@ -138,3 +138,4 @@ MonoBehaviour:
   damage: 1
   rb: {fileID: -6874523883091702629}
   impactEffect: {fileID: 4161173067367869477, guid: 7df94639ac1b92545a12f9e6c3de0032, type: 3}
+  bulletHitAudio: {fileID: -1828886649918701598, guid: 18a80de083f6a6e46bbfdfe8e0ed997d, type: 3}

@@ -27,23 +27,32 @@ public class Weapon : MonoBehaviour
     Sprite weaponSprite;
     public Sprite gunSprite;
     public Sprite grenadeSprite;
+
+    public AudioSource gunFireAudio;
+    public AudioSource grenadeFireAudio;
+
     void Start()
     {
         weaponSprite = GetComponent<SpriteRenderer>().sprite;
         bulletPrefab.GetComponent<Bullet>().damage = damageBullet;
         grenadePrefab.GetComponent<Grenade>().damage = damageGrenade;
+        gunFireAudio = GameObject.Find("GunFireAudio").GetComponent<AudioSource>();
+        grenadeFireAudio = GameObject.Find("GrenadeFireAudio").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Shoot(int k){
         if (shootingBurstOn){
+
             GameObject clone = Instantiate(bulletPrefab,muzzle.transform.position, muzzle.transform.rotation);
             Physics2D.IgnoreCollision(clone.GetComponent<Collider2D>(), this.GetComponentInParent<Collider2D>());
             clone.GetComponent<Bullet>().speed *= k;
+            gunFireAudio.Play();
         } else {
             GameObject clone = Instantiate(grenadePrefab,muzzle.transform.position, muzzle.transform.rotation);
             Physics2D.IgnoreCollision(clone.GetComponent<Collider2D>(), this.GetComponentInParent<Collider2D>());
             clone.GetComponent<Grenade>().speed *= k;
+            grenadeFireAudio.Play();
         }
     }
     void Update()

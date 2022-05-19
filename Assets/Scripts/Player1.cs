@@ -33,6 +33,9 @@ public class Player1 : MonoBehaviour
 
     private float gravityWhileClimb = 0.2f;
     private float wallDetectDistance = 0.5f;
+
+    public AudioSource playerHurtAudio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +43,7 @@ public class Player1 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         CoinsUI.GetComponent<Text>().text = coins.ToString();
+        playerHurtAudio = GameObject.Find("PlayerHurtAudio").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -129,11 +133,13 @@ public class Player1 : MonoBehaviour
         }   else if (collision.collider.gameObject.tag == "Enemy")
         {
             health-=1;
+            playerHurtAudio.Play();
             animator.SetBool("IsHurt", true);
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y+5);
         } else if (collision.collider.gameObject.tag == "EnemyBullet")
         {
             health-=collision.collider.gameObject.GetComponent<EnemyBullet>().damage;
+            playerHurtAudio.Play();
             animator.SetBool("IsHurt", true);
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y+5);
         }

@@ -32,12 +32,16 @@ public class SlimeBoss : MonoBehaviour
     private bool hitGround;
     public GameObject deathEffect;
     public GameObject levelLoader;
+
+    public AudioSource bossDeathAudio;
+
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
         stage = 0;
         playerLayer = LayerMask.GetMask("Player");
+        bossDeathAudio = GameObject.Find("BossDeathAudio").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -117,6 +121,7 @@ public class SlimeBoss : MonoBehaviour
 
     IEnumerator Die()
     {
+        bossDeathAudio.Play();
         Instantiate(deathEffect, transform.position, transform.rotation);
         yield return new WaitForSeconds(0.1f);
         GameObject.Destroy(gameObject);
