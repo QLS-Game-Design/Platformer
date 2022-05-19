@@ -25,10 +25,16 @@ public class StaticTracker : MonoBehaviour
         level = 1;
         gunDamage = 1f;
         gunDamageCost = 5f;
+        gunDamageIncrease = 1f;
+        gunDamageCostIncrease = 5f;
         grenadeDamage = 3f;
         grenadeDamageCost = 5f;
+        grenadeDamageIncrease = 1f;
+        grenadeDamageCostIncrease = 5f;
         maxHealth = 3;
         healthCost = 10;
+        maxHealthIncrease = 1f;
+        healthCostIncrease = 10f;
     }
 
     // Update is called once per frame
