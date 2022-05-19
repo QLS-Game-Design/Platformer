@@ -31,4 +31,7 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         loadNextLevel();
     }
+    public void restart(){
+        SceneManager.LoadScene(0);
+    }
 }
