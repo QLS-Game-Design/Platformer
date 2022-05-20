@@ -9,8 +9,10 @@ public class SlimeBoss : MonoBehaviour
     public float health;
     public Vector3 target;
     public int stage;
-    public float stageOneThreshold = 40f;
-    public float stageTwoThreshold = 20f;
+    public float stageOneThreshold = 199f;
+    public float stageTwoThreshold = 120f;
+    public float stageThreeThreshold = 80f;
+    public float stageFourThreshold = 40f;
     public GameObject player;
     public GameObject bulletPrefab;
     public GameObject healthBar;
@@ -32,8 +34,12 @@ public class SlimeBoss : MonoBehaviour
     private bool hitGround;
     public GameObject deathEffect;
     public GameObject levelLoader;
-
-    public AudioSource bossDeathAudio;
+    public GameObject slimePrefab;
+    public GameObject bigSlimePrefab;
+    private AudioSource bossDeathAudio;
+    private float timeFromLastSpawn = 0f;
+    public float spawnWaitTime = 0.5f;
+    public GameObject spawner;
 
     // Start is called before the first frame update
     void Start()
@@ -99,6 +105,13 @@ public class SlimeBoss : MonoBehaviour
         } else {
             target.x = transform.position.x;
         }
+        if (health<=stageThreeThreshold){
+            if(health <= stageFourThreshold){
+                SpawnSlimes(bigSlimePrefab);
+            } else {
+                SpawnSlimes(slimePrefab);
+            }
+        }
     }
 
     IEnumerator SmashAttackPause()
@@ -118,7 +131,19 @@ public class SlimeBoss : MonoBehaviour
             StartCoroutine(Die());
         }
     }
-
+    public void SpawnSlimes(GameObject enemyPrefab){
+        if (timeFromLastSpawn > spawnWaitTime){
+            Instantiate(enemyPrefab, spawner.transform.position, spawner.transform.rotation);
+            timeFromLastSpawn = 0;
+        } else{
+            timeFromLastSpawn += Time.deltaTime;
+        }
+        
+    }
+    // private void OnDrawGizmos()
+    // {
+    //    Gizmos.DrawLine(spawner.transform.position, new Vector2(spawner.transform.position.x, spawner.transform.position.y - 1f));
+    // }
     IEnumerator Die()
     {
         bossDeathAudio.Play();

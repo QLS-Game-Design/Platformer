@@ -13,6 +13,7 @@ TagManager:
   - EnemyBullet
   - Boundary
   - Grenade
+  - LevelLoader
   layers:
   - Default
   - TransparentFX

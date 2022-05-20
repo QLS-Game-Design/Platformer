@@ -1036,6 +1036,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crossfade
       objectReference: {fileID: 0}
+    - target: {fileID: 6676456058076707729, guid: ad37d37e7ef85e541bf55464ae9405b7, type: 3}
+      propertyPath: m_TagString
+      value: LevelLoader
+      objectReference: {fileID: 0}
     - target: {fileID: 6676456058076707730, guid: ad37d37e7ef85e541bf55464ae9405b7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3550,7 +3554,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427925031}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.2, y: 2, z: 0}
+  m_LocalPosition: {x: -4.1, y: 2.8, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 1513242594}

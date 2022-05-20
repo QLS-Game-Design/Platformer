@@ -19,7 +19,6 @@ public class LevelLoader : MonoBehaviour
         //StartCoroutine(loadLevel(SceneManager.GetActiveScene().buildIndex + 1));
         StartCoroutine(loadLevel("Shop"));
     }
-
     IEnumerator loadLevel(string level)
     {
         transition.SetTrigger("Start");

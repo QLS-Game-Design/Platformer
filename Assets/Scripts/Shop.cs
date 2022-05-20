@@ -20,7 +20,8 @@ public class Shop : MonoBehaviour
     public void clickContinue()
     {
         StaticTracker.level++;
-        SceneManager.LoadScene("Level" + StaticTracker.level);
+        Debug.Log(StaticTracker.level);
+        SceneManager.LoadScene(StaticTracker.level);
     }
 
     public void clickHealth()
