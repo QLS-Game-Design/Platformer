@@ -162,6 +162,7 @@ MonoBehaviour:
   health: 0
   speed: 1.5
   flipped: 0
+  enemyDeathAudio: {fileID: 0}
 --- !u!1 &8805621389003609794
 GameObject:
   m_ObjectHideFlags: 0
