@@ -3234,18 +3234,19 @@ MonoBehaviour:
   player: {fileID: 427925031}
   bulletPrefab: {fileID: 644570422104198537, guid: e6b6203af713cfa4f857e6d0eaec5371, type: 3}
   healthBar: {fileID: 82520481}
-  flySpeedX: 0.01
+  flySpeedX: 0.2
   shotWaitTime: 0.25
   smashWaitTime: 0.7
-  smashAttackPause: 0.4
+  smashAttackPause: 0.33
   smashAttackDuration: 0.22
-  smashSpeed: 0.35
+  smashSpeed: 0.6
   deathEffect: {fileID: 4161173067367869477, guid: e322e167e54167f4ba26e8ea54b84cef, type: 3}
   levelLoader: {fileID: 152158069}
   slimePrefab: {fileID: 8805621388850580211, guid: 64daf402843e1ef41888c7bef20ed33b, type: 3}
   bigSlimePrefab: {fileID: 6576047324344101284, guid: a45d99a4e1a1fcf40bfdf5f48d64ed1a, type: 3}
   spawnWaitTime: 2
   spawner: {fileID: 399680229}
+  chaseSpeed: 0.23
 --- !u!50 &1934633918
 Rigidbody2D:
   serializedVersion: 4

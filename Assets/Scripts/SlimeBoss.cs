@@ -40,6 +40,7 @@ public class SlimeBoss : MonoBehaviour
     private float timeFromLastSpawn = 0f;
     public float spawnWaitTime = 0.5f;
     public GameObject spawner;
+    public float chaseSpeed = 0.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +52,7 @@ public class SlimeBoss : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         healthBar.GetComponent<HealthBar>().updateValue(health / maxHealth);
         if (runningSmashAttack)
@@ -59,7 +60,7 @@ public class SlimeBoss : MonoBehaviour
             if (tracking)
             {
                 target.x = player.transform.position.x;
-                transform.position = Vector3.MoveTowards(transform.position, target, 0.05f);
+                transform.position = Vector3.MoveTowards(transform.position, target, chaseSpeed);
                 if (Mathf.Abs(transform.position.x - player.transform.position.x) < 0.1)
                 {
                     //Debug.Log(transform.position.x - player.transform.position.x);
