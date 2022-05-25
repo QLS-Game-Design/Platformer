@@ -919,7 +919,7 @@ MonoBehaviour:
   health: 0
   jumpForce: 6
   horizontalMove: 0
-  onGround: 1
+  onGround: 0
   coins: 0
   playerHurtAudio: {fileID: 0}
 --- !u!61 &427925034
@@ -1684,11 +1684,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8986878547892916230, guid: 68dcafe287d4aac4bbba0c139f517771, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.9625
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 8986878547892916230, guid: 68dcafe287d4aac4bbba0c139f517771, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 51.56
+      value: 52.16
       objectReference: {fileID: 0}
     - target: {fileID: 8986878547892916230, guid: 68dcafe287d4aac4bbba0c139f517771, type: 3}
       propertyPath: m_LocalPosition.y

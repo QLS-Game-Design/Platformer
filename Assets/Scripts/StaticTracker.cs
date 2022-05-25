@@ -6,7 +6,7 @@ public class StaticTracker : MonoBehaviour
 {
     public static float coins = 0;
     public static int level = 1;
-    public static float gunDamage = 1f;
+    public static float gunDamage = 10f;
     public static float gunDamageCost = 5f;
     public static float gunDamageIncrease = 1f;
     public static float gunDamageCostIncrease = 5f;

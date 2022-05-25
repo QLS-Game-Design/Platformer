@@ -709,7 +709,7 @@ MonoBehaviour:
   health: 0
   jumpForce: 6
   horizontalMove: 0
-  onGround: 1
+  onGround: 0
   coins: 0
   playerHurtAudio: {fileID: 0}
 --- !u!61 &427925034
@@ -1524,7 +1524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageBullet: 1
-  damageGrenade: 3
+  damageGrenade: 100
   player: {fileID: 427925031}
   mainCam: {fileID: 671983720}
   camera: {x: 0, y: 0}
@@ -3225,7 +3225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 800
   health: 0
-  target: {x: 0, y: 2.5, z: 0}
+  target: {x: 0, y: 2.8, z: 0}
   stage: 0
   stageOneThreshold: 799
   stageTwoThreshold: 500
@@ -3234,19 +3234,20 @@ MonoBehaviour:
   player: {fileID: 427925031}
   bulletPrefab: {fileID: 644570422104198537, guid: e6b6203af713cfa4f857e6d0eaec5371, type: 3}
   healthBar: {fileID: 82520481}
-  flySpeedX: 0.2
-  shotWaitTime: 0.25
-  smashWaitTime: 0.7
-  smashAttackPause: 0.33
+  flySpeedX: 0.15
+  shotWaitTime: 0.65
+  smashWaitTime: 1.2
+  smashAttackPause: 0.39
   smashAttackDuration: 0.22
-  smashSpeed: 0.6
+  smashSpeed: 0.63
   deathEffect: {fileID: 4161173067367869477, guid: e322e167e54167f4ba26e8ea54b84cef, type: 3}
   levelLoader: {fileID: 152158069}
   slimePrefab: {fileID: 8805621388850580211, guid: 64daf402843e1ef41888c7bef20ed33b, type: 3}
   bigSlimePrefab: {fileID: 6576047324344101284, guid: a45d99a4e1a1fcf40bfdf5f48d64ed1a, type: 3}
   spawnWaitTime: 2
   spawner: {fileID: 399680229}
-  chaseSpeed: 0.23
+  chaseSpeed: 0.21
+  chaseSpeedStageTwo: 0.22
 --- !u!50 &1934633918
 Rigidbody2D:
   serializedVersion: 4

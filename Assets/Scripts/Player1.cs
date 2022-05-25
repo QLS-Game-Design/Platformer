@@ -46,6 +46,7 @@ public class Player1 : MonoBehaviour
         animator = GetComponent<Animator>();
         CoinsUI.GetComponent<Text>().text = coins.ToString();
         playerHurtAudio = GameObject.Find("PlayerHurtAudio").GetComponent<AudioSource>();
+        animator.SetBool("JumpUp", true);
     }
 
     // Update is called once per frame

@@ -41,6 +41,7 @@ public class SlimeBoss : MonoBehaviour
     public float spawnWaitTime = 0.5f;
     public GameObject spawner;
     public float chaseSpeed = 0.2f;
+    public float chaseSpeedStageTwo = 0.26f;
 
     // Start is called before the first frame update
     void Start()
@@ -89,7 +90,7 @@ public class SlimeBoss : MonoBehaviour
 
         if (health<=stageTwoThreshold){
             this.GetComponent<SpriteRenderer>().color = Color.red; // make boss look angry
-            //flySpeedX *= 2; // fly faster too
+            chaseSpeed = chaseSpeedStageTwo;
             ShootDown();
         } 
         if (health<=stageOneThreshold){
@@ -153,7 +154,7 @@ public class SlimeBoss : MonoBehaviour
         GameObject.Destroy(gameObject);
     }
     private void flyUp(){
-        transform.position = Vector3.MoveTowards(transform.position, target, 0.05f);
+        transform.position = Vector3.MoveTowards(transform.position, target, chaseSpeed);
         target.x += flySpeedX;
     }
     private void ShootDown(){
@@ -163,7 +164,7 @@ public class SlimeBoss : MonoBehaviour
         currentRotation.eulerAngles = currentEulerAngles;
         transform.rotation = currentRotation;
         if (timeFromLastShot > shotWaitTime){
-            GameObject clone = Instantiate(bulletPrefab,transform.position, transform.rotation);
+            GameObject clone = Instantiate(bulletPrefab, spawner.transform.position, transform.rotation);
             timeFromLastShot = 0;
         } else{
             timeFromLastShot += Time.deltaTime;
