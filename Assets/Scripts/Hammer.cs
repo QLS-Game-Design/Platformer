@@ -7,9 +7,9 @@ public class Hammer : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private float timeFromLastSmash = 0f;
-    public float smashWaitTime = 0.5f;
-    public float waitTime;
-    public float offsetTime;
+    public float smashWaitTime;
+    private float waitTime;
+    private float offsetTime;
     private bool ready = false;
     
     // Start is called before the first frame update
@@ -17,7 +17,12 @@ public class Hammer : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        StartCoroutine(SmashOffset());
+        AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
+        foreach(AnimationClip clip in clips){
+            waitTime = clip.length;
+        }
+        offsetTime = Random.Range(0.0f, (float) smashWaitTime)*1f;
+        StartCoroutine(SmashOffset(offsetTime));
     }
 
     void Update()
@@ -29,9 +34,11 @@ public class Hammer : MonoBehaviour
             timeFromLastSmash += Time.deltaTime;
         }
     }
-    IEnumerator SmashOffset(){ // This whole offset thing is to make sure that all the hammers don't smash at the exact same time
-        yield return new WaitForSeconds(offsetTime);
+    IEnumerator SmashOffset(float time){ // This whole offset thing is to make sure that all the hammers don't smash at the exact same time
+        ready = false;
+        yield return new WaitForSeconds(time);
         ready = true;
+        timeFromLastSmash = smashWaitTime + Time.deltaTime;
     }
     IEnumerator Smash(){
         animator.SetBool("isSmashing", true);
