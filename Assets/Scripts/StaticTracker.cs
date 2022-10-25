@@ -14,7 +14,7 @@ public class StaticTracker : MonoBehaviour
     public static float grenadeDamageCost = 5f;
     public static float grenadeDamageIncrease = 1f;
     public static float grenadeDamageCostIncrease = 5f;
-    public static float maxHealth = 3f;
+    public static float maxHealth = 4f;
     public static float healthCost = 10f;
     public static float maxHealthIncrease = 1f;
     public static float healthCostIncrease = 10f;
@@ -31,7 +31,7 @@ public class StaticTracker : MonoBehaviour
         grenadeDamageCost = 5f;
         grenadeDamageIncrease = 1f;
         grenadeDamageCostIncrease = 5f;
-        maxHealth = 3;
+        maxHealth = 4;
         healthCost = 10;
         maxHealthIncrease = 1f;
         healthCostIncrease = 10f;
