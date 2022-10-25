@@ -7387,7 +7387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8765034063037631966, guid: 3c7a247a950972a458000673cbd5be40, type: 3}
       propertyPath: shotWaitTime
-      value: 1.5
+      value: 2.66
       objectReference: {fileID: 0}
     - target: {fileID: 8765034063037631971, guid: 3c7a247a950972a458000673cbd5be40, type: 3}
       propertyPath: m_RootOrder
@@ -81792,7 +81792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8765034063037631966, guid: 3c7a247a950972a458000673cbd5be40, type: 3}
       propertyPath: shotWaitTime
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8765034063037631971, guid: 3c7a247a950972a458000673cbd5be40, type: 3}
       propertyPath: m_RootOrder
